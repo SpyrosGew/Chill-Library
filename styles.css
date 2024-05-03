@@ -1,0 +1,77 @@
+body {
+    background-color: #090810;
+    color: white;
+    font-family: 'Kaushan Script';
+    max-width: 935px;  /* 885 in figma + 50 margin*/
+    padding: 0 50px;
+    margin: auto; 
+}
+
+header h1{
+    font-size: 78px;
+}
+
+.description{
+    margin-top: -20;
+}
+
+h4{
+    font-size: 32px;
+}
+
+.green-text {
+    color: green;
+}
+
+.yellow-text {
+    color: yellow;
+}
+
+.red-text{
+    color: red;
+    margin-top: -80px;
+}
+
+.inline {
+    display: inline-block;
+    margin-right: 5px;
+}
+
+.question {
+    margin-top: 100px;
+}
+
+.searchinput{
+    width: 525px;
+    height: 85px;
+    margin-left: 30px;
+    font-size: 40px;
+    text-align: center;
+    font-family: sans-serif;
+}
+
+.center {
+    max-width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.gyr {
+    border-color: #FFFFFF;
+    border-radius: 50px;
+    border-width: 5px;
+    border-style: solid;
+    background: linear-gradient(to right, #890000,  #B69C00 30%, #B69C00 70%, #2A8000);
+    font-weight: bold;
+}
+
+.result {
+    margin-top: 100px;
+    margin-left: 30px;
+    margin-bottom: 50px;
+    border: 5px solid white;
+    border-radius: 20px;
+    width: 700px;
+    height: 500px;
+    background-color: #030012;
+}
