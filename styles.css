@@ -75,3 +75,26 @@ h4{
     height: 500px;
     background-color: #030012;
 }
+
+.go {
+    background-color: #090810;
+    border: white;
+    border-radius: 50px;
+    border-width: 5px;
+    border-style: solid;
+    color: white;
+    padding: 0px 60px;
+    margin-top: 80px;
+    text-align: center;
+    font-size: 32px;
+    cursor: pointer;
+}
+
+.go:hover {
+    background: linear-gradient(to right, #890000, #B69C00 30%, #B69C00 70%, #2A8000);
+}
+
+.addPrompt {
+    max-width: 570px;
+    margin-top: 80px;
+}
