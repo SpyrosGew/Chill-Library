@@ -130,3 +130,11 @@ h4{
 .newInputs .button {
     margin-bottom: 120px;
 }
+
+.newDiv {
+    background-color: green;
+    width: 300px;
+    height: 200px;
+    margin: 20px;
+}
+
