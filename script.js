@@ -1,6 +1,13 @@
 
-function createClicked(){
-    alert('you added a book');
+function storeABook(){
+    title = document.getElementById("title").textContent;
+    author = document.getElementById("author").textContent;
+    price = document.getElementById("price").textContent;
+    genre = document.getElementById("genre").textContent;
+
+  
+
+
 }
 
 function dataDivSpawner(title, author, price, genre) {
@@ -35,11 +42,7 @@ function addToResults(newDiv){
     var results = document.getElementById("results");
     var childSum = results.childElementCount;
 
-    // Maximum number of visible elements before pagination
-    var maxVisibleElements = 4;
-
-    if (childSum >= maxVisibleElements) {
-        // Hide previous elements to implement pagination
+    if (childSum >= 4) {
         results.style.overflowY = "scroll";
     }
 
@@ -52,4 +55,4 @@ go.addEventListener('click', function() {
 });
 
 let create = document.getElementById('create');
-create.addEventListener('click', createClicked);
+create.addEventListener('click', storeABook());
