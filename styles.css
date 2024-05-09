@@ -71,9 +71,11 @@ h4{
     margin-bottom: 50px;
     border: 5px solid white;
     border-radius: 20px;
-    width: 700px;
-    height: 500px;
+    width: 750px;
+    height: 530px;
     background-color: #030012;
+    display: flex;
+    flex-wrap: wrap;
 }
 
 .button {
@@ -132,9 +134,31 @@ h4{
 }
 
 .newDiv {
-    background-color: green;
-    width: 300px;
+    background: linear-gradient(to right, #890000, #B69C00 30%, #B69C00 70%, #2A8000);
+    min-width: 300px;
     height: 200px;
-    margin: 20px;
+    margin: 30px;
+    border-color: white;
+    border-width: 2px;
+    border-radius: 20px;
+    border-style: solid; /* Specify border style */
 }
 
+
+.result-title {
+    text-align: center;
+    font-size: 32px;
+    color: black;
+    margin-bottom: 25px;
+}
+
+.result-author, .result-genre, .result-price {
+    margin-top: 10px;
+    margin-left: 20px;
+    font-size: 20px;
+    color: white;
+    background-color :#090810;
+    margin-right:20px;
+    border-radius: 50px;
+    padding-left: 10px;
+}
