@@ -1,14 +1,43 @@
-
 function storeABook(){
-    title = document.getElementById("title").textContent;
-    author = document.getElementById("author").textContent;
-    price = document.getElementById("price").textContent;
-    genre = document.getElementById("genre").textContent;
+    // Get the values from the input fields
+    let title = document.getElementById("title").value;
+    let author = document.getElementById("author").value;
+    let price = document.getElementById("price").value;
+    let genre = document.getElementById("genre").value;
 
-  
+    // Check if any of the fields are empty
+    if (!title || !author || !price || !genre) {
+        alert("Please fill in all of the fields");
+        return; // Exit the function if any field is empty
+    }
 
+    if (!price) {
+        price = "0.00";
+    } else {
+        // If price doesn't match the pattern, display an alert and exit the function
+        let pricePattern = /^\d+(\.\d{2})?$/;
+        if (!pricePattern.test(price)) {
+            alert("Wrong price format. Price should be in the format 'nn.nn'");
+            return;
+        }
 
+        // If price is a whole number, append ".00" to it
+        if (!price.includes(".")) {
+            price += ".00";
+        }
+    }
+
+    //send values to backend
+
+    //if all went well print a success message
+    
+    // Clear the input fields
+    document.getElementById("title").value = '';
+    document.getElementById("author").value = '';
+    document.getElementById("price").value = '';
+    document.getElementById("genre").value = '';
 }
+
 
 function dataDivSpawner(title, author, price, genre) {
     let newDiv = document.createElement("div");
@@ -55,4 +84,5 @@ go.addEventListener('click', function() {
 });
 
 let create = document.getElementById('create');
-create.addEventListener('click', storeABook());
+// Pass a reference to the storeABook function, not the result of calling it
+create.addEventListener('click', storeABook);
