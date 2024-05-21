@@ -162,3 +162,16 @@ h4{
     border-radius: 50px;
     padding-left: 10px;
 }
+
+.bookGenre {
+    width: 320px;
+    height: 55px;
+    border-radius: 50px;
+    border-width: 5px;
+    border-color: white;
+    border-style: solid;
+    background: linear-gradient(to right, #890000, #B69C00 30%, #B69C00 70%, #2A8000);
+    text-align: center;
+    font-size: 25px;
+    font-weight: bold;
+}
