@@ -18,11 +18,12 @@ function addBook(db, book) {
                 console.error('Error inserting book:', err.message);
                 return reject(err);
             }
-            console.log(`A row has been inserted with rowid ${this.lastID}`);
+            console.log(`A row has been inserted with row id ${this.lastID}`);
             resolve(this.lastID);
         });
     });
 }
+//some
 
 function getBooksByString(db, string) {
     return new Promise((resolve, reject) => {
