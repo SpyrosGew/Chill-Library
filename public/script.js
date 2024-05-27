@@ -1,42 +1,72 @@
-function storeABook(){
-    // Get the values from the input fields
+async function storeABook() {
     let title = document.getElementById("title").value;
     let author = document.getElementById("author").value;
     let price = document.getElementById("price").value;
     let genre = document.getElementById("genre").value;
 
-    // Check if any of the fields are empty
     if (!title || !author || !price || !genre) {
         alert("Please fill in all of the fields");
-        return; // Exit the function if any field is empty
+        return;
     }
 
     if (!price) {
         price = "0.00";
     } else {
-        // If price doesn't match the pattern, display an alert and exit the function
         let pricePattern = /^\d+(\.\d{2})?$/;
         if (!pricePattern.test(price)) {
             alert("Wrong price format. Price should be in the format 'nn.nn'");
             return;
         }
-
-        // If price is a whole number, append ".00" to it
         if (!price.includes(".")) {
             price += ".00";
         }
     }
 
-    //send values to backend
+    class Book {
+        constructor(title, author, genre, price) {
+            this.title = title;
+            this.author = author;
+            this.genre = genre;
+            this.price = price;
+        }
+    }
 
-    //if all went well print a success message
+    const url = 'http://localhost:3000/books';
+    const book = new Book(title, author, genre, price);
+    console.log(JSON.stringify(book));
+    try {
+        const response = await fetch(url, {
+            method: 'POST',
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(book)
+        });
     
-    // Clear the input fields
+        console.log('Response:', response); // Log the response object
+        
+        if (!response.ok) {
+            throw new Error('Failed to store book');
+        }
+        console.log('Book stored successfully:');
+        alert("Book stored successfully");
+    
+    } catch (error) {
+        console.error('Error storing book:', error.message);
+        alert("Failed to store book. Please try again later.");
+    }
+    
     document.getElementById("title").value = '';
     document.getElementById("author").value = '';
     document.getElementById("price").value = '';
     document.getElementById("genre").value = '';
 }
+
+function searchBooks(){
+    let string = document.getElementById()
+    //continure here
+}
+
 
 
 function dataDivSpawner(title, author, price, genre) {
@@ -79,9 +109,7 @@ function addToResults(newDiv){
 }
 
 let go = document.getElementById('go');
-go.addEventListener('click', function() {
-    dataDivSpawner("Lord of the rings", "JRR Tolkien", "19.99", "Adventure");
-});
+go.addEventListener('click', searchBooks);
 
 let create = document.getElementById('create');
 // Pass a reference to the storeABook function, not the result of calling it
