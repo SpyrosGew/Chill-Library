@@ -23,7 +23,7 @@ async function storeABook() {
     } else {
         let pricePattern = /^\d+(\.\d{2})?$/;
         if (!pricePattern.test(price)) {
-            alert("Wrong price format. Price should be in the format 'nn.nn'");
+            alert("Wrong price format. Price should be in the format 'n**nn.nn'");
             return;
         }
         if (!price.includes(".")) {
@@ -31,7 +31,7 @@ async function storeABook() {
         }
     }
 
-    const url = 'http://localhost:3000/books';
+    const url = `/${window.location.origin}books`;
     const book = new Book(title, author, genre, price);
 
     try {
@@ -63,13 +63,19 @@ async function storeABook() {
 }
 
 async function searchBooks() {
+    
+    var pastPrints = document.getElementById("results");
+        while (pastPrints.firstChild) {
+            pastPrints.removeChild(pastPrints.firstChild);
+        }
+
     let string = document.getElementById("search-book").value;
     if (!string) { // Simplified check for an empty or undefined value
         alert('Please enter a valid keyword');
         return;
     }
 
-    const url = `http://localhost:3000/books/${encodeURIComponent(string)}`;
+    const url = `/${window.location.origin}books/${encodeURIComponent(string)}`;
     console.log(url);
 
     try {
@@ -77,17 +83,19 @@ async function searchBooks() {
             method: 'GET'
         });
 
-        if (!response.ok) {
+        if (!response.status == 500) {
             throw new Error('Failed to fetch books');
         }
-
+        if (response.status == 404){
+            console.log("No books were found");
+            alert("No books were found with this keyword")
+            return;
+        }
         const books = await response.json(); // Parse the JSON response
+        
         console.log(books);
 
-        var pastPrints = document.getElementById("results");
-        while (pastPrints.firstChild) {
-            pastPrints.removeChild(pastPrints.firstChild);
-        }
+        
         // Iterate over the books array and log each book object
         for (let book of books) {
             dataDivSpawner(book.title,book.author,book.price,book.genre);
@@ -95,7 +103,7 @@ async function searchBooks() {
     
     } catch (err) {
         console.error('Error getting results from the database:', err);
-        alert('Error getting results');
+        alert('Error getting books');
     }
 }
 
