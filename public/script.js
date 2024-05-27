@@ -1,3 +1,12 @@
+class Book {
+    constructor(title, author, genre, price) {
+        this.title = title;
+        this.author = author;
+        this.genre = genre;
+        this.price = price;
+    }
+}
+
 async function storeABook() {
     let title = document.getElementById("title").value;
     let author = document.getElementById("author").value;
@@ -22,18 +31,9 @@ async function storeABook() {
         }
     }
 
-    class Book {
-        constructor(title, author, genre, price) {
-            this.title = title;
-            this.author = author;
-            this.genre = genre;
-            this.price = price;
-        }
-    }
-
     const url = 'http://localhost:3000/books';
     const book = new Book(title, author, genre, price);
-    console.log(JSON.stringify(book));
+
     try {
         const response = await fetch(url, {
             method: 'POST',
@@ -62,9 +62,41 @@ async function storeABook() {
     document.getElementById("genre").value = '';
 }
 
-function searchBooks(){
-    let string = document.getElementById()
-    //continure here
+async function searchBooks() {
+    let string = document.getElementById("search-book").value;
+    if (!string) { // Simplified check for an empty or undefined value
+        alert('Please enter a valid keyword');
+        return;
+    }
+
+    const url = `http://localhost:3000/books/${encodeURIComponent(string)}`;
+    console.log(url);
+
+    try {
+        const response = await fetch(url, {
+            method: 'GET'
+        });
+
+        if (!response.ok) {
+            throw new Error('Failed to fetch books');
+        }
+
+        const books = await response.json(); // Parse the JSON response
+        console.log(books);
+
+        var pastPrints = document.getElementById("results");
+        while (pastPrints.firstChild) {
+            pastPrints.removeChild(pastPrints.firstChild);
+        }
+        // Iterate over the books array and log each book object
+        for (let book of books) {
+            dataDivSpawner(book.title,book.author,book.price,book.genre);
+        }
+    
+    } catch (err) {
+        console.error('Error getting results from the database:', err);
+        alert('Error getting results');
+    }
 }
 
 
@@ -98,6 +130,7 @@ function dataDivSpawner(title, author, price, genre) {
 }
 
 function addToResults(newDiv){
+
     var results = document.getElementById("results");
     var childSum = results.childElementCount;
 
