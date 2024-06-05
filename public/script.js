@@ -31,7 +31,7 @@ async function storeABook() {
         }
     }
 
-    const url = `/${window.location.origin}books`;
+    const url = `http://localhost:3000/books`;
     const book = new Book(title, author, genre, price);
 
     try {
@@ -75,7 +75,7 @@ async function searchBooks() {
         return;
     }
 
-    const url = `/${window.location.origin}books/${encodeURIComponent(string)}`;
+    const url = `http://localhost:3000/books/${encodeURIComponent(string)}`;
     console.log(url);
 
     try {

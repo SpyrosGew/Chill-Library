@@ -19,6 +19,7 @@ module.exports = {
         }),
         
         app.post('/books', async (req,res)=>{
+            console.log("hi")
             const book = req.body;
             console.log(book);
             try {
