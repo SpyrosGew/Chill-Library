@@ -8,9 +8,8 @@ class Book{
 }
 
 module.exports = {
-    init: function(){
-        const sqlite3 = require('sqlite3').verbose();
-        this.db = new sqlite3.Database('books.db');
+    setDatabaseConnection: function(dbConnection) {
+        this.db = dbConnection;
     },
     addBook: function (book) {
         return new Promise((resolve, reject) => {
@@ -19,7 +18,7 @@ module.exports = {
             const price = parseFloat(book.price);
             this.db.run(q, [book.title, book.author, book.genre, price], function(err) {
                 if (err) {
-                    console.error('Error inserting book:', err.message);
+                    console.log('Error inserting book:', err.message);
                     return reject(err);
                 }
                 console.log(`A row has been inserted with row id ${this.lastID}`);

@@ -1,5 +1,4 @@
 const books = require('./books');
-books.init();
 
 module.exports = {
     init: function(app){
